@@ -73,6 +73,7 @@ The distribution plan obtained when `MiktarAta1` is run:
 
 - Microsoft Excel (desktop version — macros may not work in mobile/web Excel)
 - Macros must be enabled (File > Options > Trust Center > Macro Settings)
+  
 ##TURKISH
 # Taşıma Problemi Çözücü (Transportation Problem Solver) — Excel + VBA
 
