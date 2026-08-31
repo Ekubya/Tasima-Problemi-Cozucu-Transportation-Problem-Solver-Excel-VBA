@@ -76,6 +76,3 @@ Excel'de `Alt + F8` tuşlarına basıp istediğiniz makroyu (`MiktarAta1`, `Mikt
 ## 📌 Notlar
 - `Miktar` aralığını sıfırlayıp farklı makroları sırayla deneyerek sonuçları karşılaştırabilirsiniz.
 
-## 📄 Lisans
-
-Bu proje eğitim amaçlı hazırlanmıştır. Kullanım ve dağıtım koşulları için depo sahibiyle iletişime geçin.
