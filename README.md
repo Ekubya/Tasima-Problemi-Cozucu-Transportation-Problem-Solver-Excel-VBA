@@ -1,3 +1,79 @@
+##ENGLISH
+# Transportation Problem Solver — Excel + VBA
+
+This project is an Excel (`.xlsm`) model supported by VBA macros that solves a **transportation (distribution) problem** using the least cost approach.
+
+> When you open the file, if you see an **"Enable Content"** warning at the top of Excel, you must approve it for the macros to work.
+
+## 📊 Problem Definition
+
+The model is a classic **transportation problem** that aims to minimize the transportation cost between **5 sources (Factories: F1–F5)** and **6 destinations (Warehouses/Regions: D1–D6)**.
+
+- **Unit Transportation Cost Table:** Unit cost for each source-destination pair (B3:G7)
+- **Capacity:** Maximum supply amount of each source (H3:H7)
+- **Demand:** Required amount for each destination (B8:G8)
+- **Objective:** To find a distribution plan that minimizes the total transportation cost
+
+In this example, total capacity = total demand = **3,650** units (balanced transportation problem).
+
+## 🧮 Named Ranges Used
+
+The VBA codes work through the following named ranges instead of using cell addresses directly:
+
+| Name | Range | Meaning |
+|---|---|---|
+| `MyCost` | `B3:G7` | Unit transportation cost matrix |
+| `Kapasite` | `H3:H7` | Capacities of the sources |
+| `Talep` | `B8:G8` | Demands of the destinations |
+| `Miktar` | `B13:G17` | Solution/distribution plan (filled by macros) |
+| `Used` | `H13:H17` | Total amount used from each source |
+| `Meet` | `B18:G18` | Total amount met for each destination |
+| `Demand` | `B20:G20` | Demand check row |
+| `ToplamMaliyet` | `H19` | Calculated total cost |
+
+## ⚙️ VBA Macros
+
+The workbook contains multiple macros that heuristically solve the transportation problem using the **Least Cost Method**. Each applies the same logic with a different loop structure:
+
+| Module | Macro | Approach |
+|---|---|---|
+| `Module1` | `MiktarAta1` | Row-based least cost assignment — `For` loop |
+| `Module2` | `MiktarAta2` | Same logic — `Do While` loop |
+| `Module2` | `MiktarAta3` | Same logic — `Do Until` loop |
+| `Module2` | `MiktarAta4` | **Column-based** least cost assignment |
+| `Module3` | `MiktarAta6` | Clean, optimized version with type definitions (`Dim`) and `Range` objects |
+
+**Working logic (summary):**
+1. The `Miktar` (Amount) range is cleared.
+2. For each source (row), the destination with the lowest cost that can utilize the remaining capacity is selected.
+3. The assigned amount is the minimum of the remaining capacity and the remaining demand.
+4. The process is repeated until the total used amount equals the total capacity.
+
+### Running the macros
+You can press `Alt + F8` in Excel, select the desired macro (e.g., `MiktarAta1`, `MiktarAta4`, `MiktarAta6`), and click **Run**. Since different macros use different sorting logics, they may produce **different (but valid) distribution plans** depending on the execution order; the total costs can be compared.
+
+## ✅ Example Result
+
+The distribution plan obtained when `MiktarAta1` is run:
+
+| | D1 | D2 | D3 | D4 | D5 | D6 | Used |
+|---|---|---|---|---|---|---|---|
+| **F1** | 60 | – | – | – | 590 | – | 650 |
+| **F2** | – | – | – | 550 | – | – | 550 |
+| **F3** | – | – | 600 | – | – | – | 600 |
+| **F4** | 650 | – | – | – | – | 200 | 850 |
+| **F5** | 100 | 700 | 50 | 150 | – | – | 1,000 |
+| **Met** | 810 | 700 | 650 | 700 | 590 | 200 | |
+
+**Total Cost = 180,440**
+
+> Note: This is an **initial feasible solution** provided by the least cost method (heuristic); it may not be the same as the **exact optimal solution** found through linear programming (e.g., Excel Solver, Simplex method).
+
+## 🛠️ Requirements
+
+- Microsoft Excel (desktop version — macros may not work in mobile/web Excel)
+- Macros must be enabled (File > Options > Trust Center > Macro Settings)
+##TURKISH
 # Taşıma Problemi Çözücü (Transportation Problem Solver) — Excel + VBA
 
 Bu proje, bir **taşıma (dağıtım) problemini** en küçük maliyet yaklaşımıyla çözen, VBA makroları ile desteklenmiş bir Excel (`.xlsm`) modelidir. 
